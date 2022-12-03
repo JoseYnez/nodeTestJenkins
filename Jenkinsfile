@@ -12,9 +12,12 @@ pipeline {
             }
         }
         stage('build') {
-        sh 'docker-compose build'
-        sh 'docker-compose down'
-        sh 'docker-compose up -d'
+          agent any
+            steps {
+                sh 'docker-compose build'
+                sh 'docker-compose down'
+                sh 'docker-compose up -d'
+            }
         }  
     }
 }
