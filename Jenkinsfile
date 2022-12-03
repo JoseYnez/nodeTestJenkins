@@ -11,6 +11,7 @@ node {
      contenedortest.pull()
      contenedortest.inside {
        sh 'npm install'
+       sh 'npm run lint'
        sh 'npm run test'
      }
    }  
