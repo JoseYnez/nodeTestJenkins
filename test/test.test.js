@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 
 app.get('/user', async (req, res)=> {
-  res.status(200).json({ name: 'johns' });
+  res.status(200).json({ name: 'john' });
 });
 
 describe('supertest',()=>{
