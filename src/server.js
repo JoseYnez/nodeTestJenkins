@@ -1,6 +1,5 @@
 require('dotenv').config()
 const express = require('express')
-const a=20
 const app = express()
 const router=express.Router()
 const port = process.env.PORT
