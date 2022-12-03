@@ -11,7 +11,7 @@ node {
      contenedortest.pull()
      contenedortest.inside {
        sh 'npm install'
-       sh 'npm test'
+       sh 'npm run test'
      }
    }  
    stage('build') {
