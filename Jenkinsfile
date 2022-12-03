@@ -14,9 +14,6 @@ node {
        sh 'npm test'
      }
    }  
-    stage('format file') {
-       sh 'npm format'
-     }
    stage('build') {
      sh 'docker-compose build'
      sh 'docker-compose down'
