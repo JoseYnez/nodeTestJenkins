@@ -7,7 +7,7 @@ node {
    }
    
    stage('test') {
-     def contenedortest = docker.image('node:4.6')
+     def contenedortest = docker.image('node')
      contenedortest.pull()
      contenedortest.inside {
        sh 'npm install'
