@@ -1,27 +1,17 @@
 pipeline {
     agent any
-    stages {
-        stage('test') {
-            agent {
-            docker { image 'node:16.13.1-alpine' }
-            }
-            steps {
-                sh 'npm install'
-                sh 'npm run lint'
-                sh 'npm run test'
-            }
-        }
-        stage('build') {
-            steps {
-                sh 'docker-compose build'
-                sh 'docker-compose down'
-                sh 'docker-compose up -d'
-            }
-        }  
-    }
+
     post {
         always {
-            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+            emailext subject: '$DEFAULT_SUBJECT',
+                        body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}",
+                        recipientProviders: [
+                            [$class: 'CulpritsRecipientProvider'],
+                            [$class: 'DevelopersRecipientProvider'],
+                            [$class: 'RequesterRecipientProvider']
+                        ], 
+                        replyTo: '$DEFAULT_REPLYTO',
+                        to: '$DEFAULT_RECIPIENTS'
         }
     }
 }
