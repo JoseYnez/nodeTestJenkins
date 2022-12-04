@@ -10,22 +10,21 @@ describe('user',()=>{
         .expect(200)
         //expect(result.text).toEqual(JSON.stringify([{nombre:"Jose",apellido:"Yañez"}]))
     })
-    /*it('res users',async()=>{
+    it('get users',async()=>{
         await request(app)
         .get('/user')
         .expect('Content-Type', /json/)
         //.expect('Content-Length', '15')
-        .expect(200).then((response) => {
-            expect(Array.isArray(response.body)).toBeTruthy()
-			expect(response.body.length).toEqual(1)
-			// Check the response data
-			//expect(response.body[0]._id).toBe(post.id)
-			//expect(response.body[0].title).toBe(post.title)
-			//expect(response.body[0].content).toBe(post.content)
-            //expect(res.body.nombre).toBeDefined();
-            //expect(res.body.apellido).toBeDefined();
+        .expect(200).then((res) => {
+            expect(Array.isArray(res.body)).toBeTruthy()
+            if(res.body.length>0){
+                res.body.forEach(element => {
+                    expect(element.nombre).toBeDefined();
+                    expect(element.apellido).toBeDefined();
+                });
+            }            
            });
 
-    })*/
+    })
     
 })
