@@ -6,7 +6,7 @@ const port = process.env.PORT
 app.use(router)
 app.use(express.json)
 router.get('/user',(req,res)=>{
-    let user=[{nombre:"Jose",apellido:"Yañez"}]
+    let user=[{nombre:"Jose",apellido:"Yañez"},{nombre:"Jose"}]
     return res.status(200).send(user)
 })
 router.get('*',(req,res)=>{
