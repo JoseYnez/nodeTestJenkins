@@ -3,7 +3,7 @@ FROM node:alpine
 WORKDIR /var/www
 ENV PORT=3000
 COPY package.json .
-RUN npm install
+RUN npm install --production
 
 COPY . .
 
