@@ -9,7 +9,7 @@ router.get('/user',(req,res)=>{
     return res.status(200).send(user)
 })
 router.get('*',(req,res)=>{
-  return res.status(200).send("TE AMO CORAZON, ¿TE CASAS CONMIGO? okno aun es pronto")
+  return res.status(200).send("PAGINA NO DISPONIBLE")
 })
 app.listen(port, () => {
   console.log(`Server listen in port ${port}`)
