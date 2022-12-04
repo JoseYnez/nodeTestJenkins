@@ -8,7 +8,7 @@ router.get('/user',(req,res)=>{
     let user={nombre:"Jose",apellido:"Yañez"}
     return res.status(200).send(user)
 })
-router.get('/user',(req,res)=>{
+router.get('*',(req,res)=>{
   return res.status(200).send("PAGINA NO DISPONIBLE")
 })
 app.listen(port, () => {
