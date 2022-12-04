@@ -1,18 +1,40 @@
-require('dotenv').config()
-const express = require('express')
-const app = express()
-const router=express.Router()
-const port = process.env.PORT
-app.use(router)
-app.use(express.json)
-router.get('/user',(req,res)=>{
-    let user=[{nombre:"Jose",apellido:"Yañez"},{nombre:"Jose"}]
-    return res.status(200).send(user)
-})
-router.get('*',(req,res)=>{
-  return res.status(200).send("PAGINA NO DISPONIBLE")
-})
-app.listen(port, () => {
-  console.log(`Server listen in port ${port}`)
-})
-module.exports=app
+const express = require('express');
+const cors = require('cors');
+
+class Server {
+    constructor() {
+        this.app  = express();
+        this.port = process.env.PORT;
+
+        // Conectar a base de datos
+        // Middlewares
+        this.middlewares();
+        // Rutas de mi aplicación
+        this.routes();
+    }
+    middlewares() {
+        // CORS
+        this.app.use( cors() );
+        // Lectura y parseo del body
+        this.app.use( express.json() );
+        // Directorio Público
+        this.app.use( express.static('public') );
+    }
+    routes() {
+        this.app.use( '/usuarios', require('./user/usuarios.route'));
+        this.app.use( '/', require('./pages/pages.route'));
+    }
+    listen() {
+        this.app.listen( this.port, () => {
+            console.log('Servidor corriendo en puerto', this.port );
+        });
+    }
+}
+
+require('dotenv').config();
+
+const server = new Server();
+const app=server.app;
+server.listen();
+
+module.exports=app;
