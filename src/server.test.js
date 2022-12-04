@@ -3,7 +3,7 @@ const app = require('./server');
 
 describe('user',()=>{
     it('res users',async()=>{
-        const result=await request(app)
+        await request(app)
         .get('/user')
         .expect('Content-Type', /json/)
         //.expect('Content-Length', '15')
