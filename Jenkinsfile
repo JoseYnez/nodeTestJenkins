@@ -1,6 +1,13 @@
 pipeline {
     agent any
-
+    stages {
+        stage('build') {
+            steps {
+                sh 'echo "hola"'
+                
+            }
+        }  
+    }
     post {
         always {
             emailext subject: '$DEFAULT_SUBJECT',
