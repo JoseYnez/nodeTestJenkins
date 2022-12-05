@@ -3,7 +3,9 @@ pipeline {
     stages {
         stage('test') {
             agent {
-            docker { image 'node:16.13.1-alpine' }
+            docker { 
+                image 'node:16.13.1-alpine'
+                args '-e PORT=3000 -e MONGODB_CNN=mongodb+srv://accesoLimitado:gV3VeGNSPVFA0f0J@cluster0.we7o7.mongodb.net/test' }
             }
             steps {
                 sh 'npm install'
