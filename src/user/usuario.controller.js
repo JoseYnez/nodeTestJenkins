@@ -17,7 +17,6 @@ const usuariosGet = async(req = request, res = response) => {
             .skip( Number( desde ) )
             .limit(Number( limite ))
     ]);
-
     res.json({
         total,
         usuarios
