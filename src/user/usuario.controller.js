@@ -30,8 +30,6 @@ const usuarioGet = async(req = request, res = response) => {
 
     const usuario = await Promise.all(
         Usuario.findById(id)
-            .skip( Number( desde ) )
-            .limit(Number( limite ))
     );
 
     res.json({
