@@ -24,6 +24,21 @@ const usuariosGet = async(req = request, res = response) => {
     });
 }
 
+const usuarioGet = async(req = request, res = response) => {
+
+    const { id } = req.query;
+
+    const usuario = await Promise.all(
+        Usuario.findById(id)
+            .skip( Number( desde ) )
+            .limit(Number( limite ))
+    );
+
+    res.json({
+        usuario
+    });
+}
+
 const usuariosPost = async(req, res = response) => {
     
     const { nombre, correo, password, rol } = req.body;
@@ -81,6 +96,7 @@ const usuariosDelete = async(req, res = response) => {
 
 module.exports = {
     usuariosGet,
+    usuarioGet,
     usuariosPost,
     usuariosPut,
     usuariosPatch,
