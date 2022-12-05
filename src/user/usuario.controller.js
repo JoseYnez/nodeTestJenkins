@@ -25,15 +25,9 @@ const usuariosGet = async(req = request, res = response) => {
 }
 
 const usuarioGet = async(req = request, res = response) => {
-
-    const { id } = req.query;
-
+    const { id } = req.params;
     const usuario = await Usuario.findById(id)
-
-
-    res.json({
-        usuario
-    });
+    res.json(usuario);
 }
 
 const usuariosPost = async(req, res = response) => {
