@@ -1,9 +1,27 @@
 const { response, request } = require('express');
-const usuarios=require('../dataBase/db')
+const bcryptjs = require('bcryptjs');
+
+
+const Usuario = require('./usuario.model');
+
+
+
 const usuariosGet = async(req = request, res = response) => {
-    res.json(
+
+    const { limite = 5, desde = 0 } = req.query;
+    const query = { estado: true };
+
+    const [ total, usuarios ] = await Promise.all([
+        Usuario.countDocuments(query),
+        Usuario.find(query)
+            .skip( Number( desde ) )
+            .limit(Number( limite ))
+    ]);
+
+    res.json({
+        total,
         usuarios
-    );
+    });
 }
 
 const usuariosPost = async(req, res = response) => {
@@ -26,7 +44,7 @@ const usuariosPost = async(req, res = response) => {
 const usuariosPut = async(req, res = response) => {
 
     const { id } = req.params;
-    const { _id, password, google, correo, ...resto } = req.body;
+    const {  password,  ...resto } = req.body;
 
     if ( password ) {
         // Encriptar la contraseña
