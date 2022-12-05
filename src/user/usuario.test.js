@@ -15,5 +15,14 @@ describe('user',()=>{
            });
 
     })
+
+    test('get user',async()=>{
+        await request(app)
+        .get('/user/638d6c7c3daa067b2b811220')
+        .expect('Content-Type', /json/)
+        //.expect('Content-Length', '15')
+        .expect(200)
+
+    })
     
 })

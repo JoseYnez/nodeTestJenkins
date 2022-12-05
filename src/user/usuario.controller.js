@@ -28,9 +28,8 @@ const usuarioGet = async(req = request, res = response) => {
 
     const { id } = req.query;
 
-    const usuario = await Promise.all(
-        Usuario.findById(id)
-    );
+    const usuario = await Usuario.findById(id)
+
 
     res.json({
         usuario
