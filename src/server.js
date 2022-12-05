@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { dbConnection } = require('./database/config.js');
+const { dbConnection } = require('../src/dataBase/config');
 require('dotenv').config();
 class Server {
     constructor() {
