@@ -1,6 +1,7 @@
 const { response, request } = require('express');
 const bcryptjs = require('bcryptjs');
 
+const error=undefined
 
 const Usuario = require('./usuario.model');
 
